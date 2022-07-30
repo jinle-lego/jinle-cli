@@ -9,9 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
     "lerna": "^5.1.6"
   }
