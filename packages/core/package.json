@@ -22,5 +22,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5"
+  "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
+  "dependencies": {
+    "@jinle-cli/utils": "file:../utils"
+  }
 }
