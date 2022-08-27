@@ -24,6 +24,6 @@
   },
   "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
   "dependencies": {
-    "@jinle-cli/utils": "file:../utils"
+    "@jinle-cli/utils": "0.1.3"
   }
 }
