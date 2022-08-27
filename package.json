@@ -5,13 +5,23 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "lerna clean -y && rm -rf node_modules",
+    "commit": "cz"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-lerna-changelog"
+    }
+  },
   "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-lerna-changelog": "^2.0.3",
     "lerna": "^5.1.6"
   },
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ]
 }
