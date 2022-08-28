@@ -16,10 +16,20 @@
       "path": "./node_modules/cz-lerna-changelog"
     }
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+  },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.1",
+    "@commitlint/config-conventional": "^17.1.0",
     "commitizen": "^4.2.5",
     "cz-lerna-changelog": "^2.0.3",
-    "lerna": "^5.1.6"
+    "lerna": "^5.1.6",
+    "husky": "^8.0.1"
   },
   "workspaces": [
     "packages/*"
