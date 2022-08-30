@@ -1,13 +1,11 @@
-'use strict';
-
-const utils = require('@jinle-cli/utils')
-
-module.exports = core;
+const utils = require('@jinle-cli/utils');
 
 function core() {
     // TODO
-    utils()
-    console.log('core')
+    utils();
+    console.log('core');
 }
 
-core()
+core();
+
+module.exports = core;

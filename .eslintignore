@@ -1,0 +1,4 @@
+node_modules
+
+packages/**/__tests__
+packages/**/dist

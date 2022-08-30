@@ -5,6 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "lint": "eslint ./",
+    "fix": "eslint ./ --fix",
     "version": "lerna version -m 'chore(release): publish %s'",
     "publish": "lerna publish from-git",
     "commit": "cz",
@@ -24,6 +26,9 @@
     "@commitlint/config-conventional": "^17.1.0",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
     "husky": "^8.0.1",
     "lerna": "^5.1.6",
     "ts-node": "^10.9.1"
