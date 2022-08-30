@@ -5,7 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "clean": "lerna clean -y && rm -rf node_modules",
+    "version": "lerna version --conventional-commits",
+    "publish": "lerna publish from-git",
     "commit": "cz",
     "prepare": "husky install"
   },

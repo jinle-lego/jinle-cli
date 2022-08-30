@@ -1,4 +1,4 @@
 #! /usr/bin/env node
 
 require('../lib/core')
-console.log('hello, jinle-cli')
+console.log('hello, jinle-cli, test')
