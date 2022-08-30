@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "version": "lerna version --conventional-commits",
+    "version": "lerna version -m 'chore(release): publish %s'",
     "publish": "lerna publish from-git",
     "commit": "cz",
     "prepare": "husky install"
