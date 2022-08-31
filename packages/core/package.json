@@ -1,6 +1,6 @@
 {
   "name": "@jinle-cli/core",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "> TODO: description",
   "author": "jinle <jinle0703@foxmail.com>",
   "homepage": "",
@@ -24,6 +24,6 @@
   },
   "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
   "dependencies": {
-    "@jinle-cli/utils": "^0.1.7"
+    "@jinle-cli/utils": "0.1.9"
   }
 }
