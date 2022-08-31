@@ -2,4 +2,4 @@
 
 require('../lib/core');
 
-console.log('hello, jinle-cli, test');
+console.log('hello, jinle-cli');
