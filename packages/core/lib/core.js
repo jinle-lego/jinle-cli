@@ -9,4 +9,3 @@ function core() {
 core();
 
 module.exports = core;
-
