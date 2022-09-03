@@ -1,5 +1,5 @@
 #! /usr/bin/env node
 
-require('../lib/core');
+require('../src/core');
 
 console.log('hello, jinle-cli');

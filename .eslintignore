@@ -1,4 +1,4 @@
 node_modules
 
-packages/**/__tests__
-packages/**/dist
+**/__tests__
+**/dist

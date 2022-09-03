@@ -1,3 +1,3 @@
 module.exports = {
-    "packages/**/*.{js,ts}": ["eslint --fix"]
+    "{core,commands,models,utils}/**/*.{js,ts}": ["eslint --fix"]
 }
