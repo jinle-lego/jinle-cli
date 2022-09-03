@@ -1,5 +1,9 @@
 #! /usr/bin/env node
 
-require('../src/core');
+const importLocal = require('import-local');
 
-console.log('hello, jinle-cli');
+if (importLocal(__filename)) {
+    require('npmlog').info('正在使用 jinle-cli 本地版本');
+} else {
+    require('../src')(process.argv.slice(2));
+}

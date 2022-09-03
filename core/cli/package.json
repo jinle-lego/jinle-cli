@@ -5,16 +5,15 @@
   "author": "jinle <jinle0703@foxmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/core.js",
   "bin": {
     "jinle-cli": "bin/index.js"
   },
   "directories": {
-    "lib": "lib",
+    "src": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
@@ -22,5 +21,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5"
+  "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
+  "dependencies": {
+    "import-local": "^3.1.0",
+    "npmlog": "^6.0.2"
+  }
 }

@@ -1,8 +1,6 @@
 function core() {
     // TODO
-    console.log('core');
+    console.log('exec core');
 }
-
-core();
 
 module.exports = core;

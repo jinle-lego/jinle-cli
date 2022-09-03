@@ -12,5 +12,6 @@ module.exports = {
     },
     rules: {
         indent: ['error', 4],
+        'global-require': 0,
     },
 };

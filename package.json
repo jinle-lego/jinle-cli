@@ -2,7 +2,6 @@
   "name": "jinle-cli",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
   "private": true,
   "scripts": {
     "lint": "eslint --fix --ext .js,.ts .",
