@@ -23,7 +23,10 @@
   },
   "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
   "dependencies": {
+    "@jinle-cli/log": "0.1.1",
+    "colors": "^1.4.0",
     "import-local": "^3.1.0",
-    "npmlog": "^6.0.2"
+    "npmlog": "^6.0.2",
+    "semver": "^7.3.7"
   }
 }

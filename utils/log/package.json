@@ -1,0 +1,35 @@
+{
+  "name": "@jinle-cli/log",
+  "version": "0.1.1",
+  "description": "jinle-cli log",
+  "keywords": [
+    "log"
+  ],
+  "author": "jinle <jinle.qiu@qq.com>",
+  "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
+  "license": "ISC",
+  "main": "src/index.js",
+  "directories": {
+    "lib": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinle-lego/jinle-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@jinle-cli/log.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/jinle-lego/jinle-cli/issues"
+  },
+  "dependencies": {
+    "npmlog": "^6.0.2"
+  }
+}
