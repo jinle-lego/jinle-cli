@@ -4,7 +4,10 @@ module.exports = {
         es2021: true,
         node: true,
     },
-    extends: ['airbnb-base', 'airbnb-typescript/base'],
+    extends: [
+        'airbnb-base',
+        'airbnb-typescript/base'
+    ],
     overrides: [
     ],
     parserOptions: {
