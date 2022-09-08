@@ -18,5 +18,7 @@ module.exports = {
         indent: ['error', 4],
         "@typescript-eslint/indent": ['error', 4],
         'global-require': 0,
+        "import/no-import-module-exports": 0,
+        "import/prefer-default-export": 0
     },
 };

@@ -1,9 +1,14 @@
 {
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "outDir": "./dist"
+        "outDir": "./dist",
     },
     "include": [
-        "./src"
+        "./src",
+        "./bin",
+        "package.json"
+    ],
+    "references": [
+        { "path": "../../utils/log" }
     ]
 }

@@ -19,12 +19,13 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && tsc -b",
-    "watch": "tsc -w --preserveWatchOutput"
+    "watch": "tsc -b -w --preserveWatchOutput"
   },
   "bugs": {
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
   "dependencies": {
+    "@types/npmlog": "^4.1.4",
     "npmlog": "^6.0.2"
   }
 }

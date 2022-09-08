@@ -1,12 +1,12 @@
-const semver = require('semver');
-const colors = require('colors/safe');
-const log = require('@jinle-cli/log');
+import semver from 'semver';
+import log from '@jinle-cli/log';
+import colors from 'colors/safe';
 
-const pkg = require('../package.json');
-const { LOWEST_NODE_VERSION } = require('./constant');
+import pkg from '../package.json';
+import { LOWEST_NODE_VERSION } from './constant';
 
-const checkPkgVersion = (_pkg) => {
-    log.info(`jinle-cli v${_pkg.version}`);
+const checkPkgVersion = (_pkg: any) => {
+    log.info('jinle-cli', `v${_pkg.version}`);
 };
 
 const checkNodeVersion = () => {
@@ -18,13 +18,14 @@ const checkNodeVersion = () => {
     }
 };
 
-const core = () => {
+const core = (argv: String[]) => {
     try {
+        log.info('argv:', JSON.stringify(argv));
         checkPkgVersion(pkg);
         checkNodeVersion();
     } catch (err) {
-        log.error(err?.message || err);
+        log.error('core', err?.message || err);
     }
 };
 
-module.exports = core;
+export default core;
