@@ -16,7 +16,9 @@
     "src"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc -b",
+    "watch": "tsc -w --preserveWatchOutput"
   },
   "publishConfig": {
     "access": "public"

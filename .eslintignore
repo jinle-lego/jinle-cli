@@ -2,3 +2,5 @@ node_modules
 
 **/__tests__
 **/dist
+
+.eslintrc.js

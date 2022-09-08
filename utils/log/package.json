@@ -8,7 +8,7 @@
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
   "license": "ISC",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "directories": {
     "lib": "src",
     "test": "__tests__"
@@ -24,7 +24,9 @@
     "url": "git+https://github.com/jinle-lego/jinle-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@jinle-cli/log.test.js"
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc -b",
+    "watch": "tsc -w --preserveWatchOutput"
   },
   "bugs": {
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
