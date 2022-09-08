@@ -9,13 +9,6 @@
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
   "license": "ISC",
   "main": "dist/index.js",
-  "directories": {
-    "lib": "src",
-    "test": "__tests__"
-  },
-  "files": [
-    "src"
-  ],
   "publishConfig": {
     "access": "public"
   },

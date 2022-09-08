@@ -8,13 +8,6 @@
   "bin": {
     "jinle-cli": "bin/index.js"
   },
-  "directories": {
-    "src": "src",
-    "test": "__tests__"
-  },
-  "files": [
-    "src"
-  ],
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && tsc -b",
