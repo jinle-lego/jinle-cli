@@ -19,10 +19,15 @@
   "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
   "dependencies": {
     "@jinle-cli/log": "0.1.4",
+    "@types/root-check": "^1.0.0",
     "@types/semver": "^7.3.12",
     "colors": "^1.4.0",
+    "dotenv": "^16.0.2",
     "import-local": "^3.1.0",
+    "minimist": "^1.2.6",
     "npmlog": "^6.0.2",
+    "path-exists": "^4.0.0",
+    "root-check": "^1.0.0",
     "semver": "^7.3.7"
   }
 }

@@ -15,7 +15,7 @@ module.exports = {
         ecmaVersion: 'latest',
     },
     rules: {
-        indent: ['error', 4],
+        // indent: ['error', 4],
         "@typescript-eslint/indent": ['error', 4],
         'global-require': 0,
         "import/no-import-module-exports": 0,

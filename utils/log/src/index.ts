@@ -1,6 +1,10 @@
 import log from 'npmlog';
 
-log.level = process.env?.LOG_LEVEL || 'info'; // 判断debug模式
+export const updateLogLevel = () => {
+    log.level = process.env?.LOG_LEVEL || 'info'; // 判断debug模式
+};
+
+updateLogLevel();
 
 log.heading = '🤖'; // 修改前缀
 
