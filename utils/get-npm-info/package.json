@@ -1,0 +1,32 @@
+{
+  "name": "@jinle-cli/get-npm-info",
+  "version": "0.1.4",
+  "description": "jinle-cli: get npm info",
+  "author": "jinle <jinle.qiu@qq.com>",
+  "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
+  "license": "ISC",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinle-lego/jinle-cli.git"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc -b",
+    "watch": "tsc -b -w --preserveWatchOutput"
+  },
+  "bugs": {
+    "url": "https://github.com/jinle-lego/jinle-cli/issues"
+  },
+  "dependencies": {
+    "@types/semver": "^7.3.12",
+    "@types/url-join": "^4.0.1",
+    "axios": "^0.27.2",
+    "semver": "^7.3.7",
+    "url-join": "^4.0.1"
+  }
+}

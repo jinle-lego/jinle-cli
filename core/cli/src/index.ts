@@ -1,5 +1,6 @@
 import semver from 'semver';
 import log, { updateLogLevel } from '@jinle-cli/log';
+import { getLatestVersion } from '@jinle-cli/get-npm-info';
 import colors from 'colors/safe';
 import rootCheck from 'root-check';
 import { homedir } from 'os';
@@ -11,8 +12,8 @@ import path from 'path';
 import pkg from '../package.json';
 import { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } from './constant';
 
-const checkPkgVersion = (_pkg: any) => {
-    log.info('jinle-cli', `v${_pkg.version}`);
+const checkPkgVersion = () => {
+    log.info('jinle-cli', `v${pkg.version}`);
 };
 
 const checkNodeVersion = () => {
@@ -67,7 +68,7 @@ const createDefaultConfig = () => {
 const checkEnv = () => {
     const dotenvPath = path.resolve(homedir(), '.env');
     if (pathExists(dotenvPath)) {
-        // 自动找到根目录下的.env文件，将数据都写入环境变量
+        // 找到根目录下的.env文件，将数据都写入环境变量
         dotenv.config({
             path: dotenvPath,
         });
@@ -76,16 +77,36 @@ const checkEnv = () => {
     log.verbose('env', process.env.CLI_HOME_PATH);
 };
 
-export default (argv: string[]) => {
+/**
+ * 检查是否为最新版本
+ * 1. 获取当前版本号和模块名
+ * 2. 调用 npm API 获取所有版本号
+ * 3. 提取所有版本号 比对大于当前的版本号
+ * 4. 获取用户版本号 提示更新
+ */
+const checkGlobalUpdate = async () => {
+    const curVersion: string = pkg.version;
+    const npmName: string = pkg.name;
+    const latestVersion: string = await getLatestVersion(curVersion, npmName);
+    if (latestVersion && semver.gt(latestVersion, curVersion)) {
+        log.warn(
+            '更新提示',
+            colors.yellow(`请手动更新${npmName}，当前版本: ${curVersion}，最新版本: ${latestVersion}\n更新命令: npm install -g ${npmName}@latest`),
+        );
+    }
+};
+
+export default async (argv: string[]) => {
     try {
         const args = minimist(argv);
 
-        checkPkgVersion(pkg);
+        checkPkgVersion();
         checkNodeVersion();
         checkRoot();
         checkUserHome();
         checkInputArgs(args);
         checkEnv();
+        await checkGlobalUpdate();
     } catch (err) {
         log.error('cli', err?.message || err);
     }

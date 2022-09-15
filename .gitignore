@@ -2,5 +2,5 @@
 .idea
 node_modules
 **/node_modules
-lerna-debug.log
+**/*.log
 **/dist
