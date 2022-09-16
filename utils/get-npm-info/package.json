@@ -1,6 +1,6 @@
 {
   "name": "@jinle-cli/get-npm-info",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "jinle-cli: get npm info",
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
