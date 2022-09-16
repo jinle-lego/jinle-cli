@@ -8,13 +8,23 @@
   "bin": {
     "jinle-cli": "dist/bin/index.js"
   },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinle-lego/jinle-cli.git"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && tsc -b",
     "watch": "tsc -b -w --preserveWatchOutput"
   },
-  "publishConfig": {
-    "access": "public"
+  "bugs": {
+    "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
   "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
   "dependencies": {

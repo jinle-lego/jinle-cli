@@ -9,6 +9,7 @@
         "package.json"
     ],
     "references": [
-        { "path": "../../utils/log" }
+        { "path": "../../utils/log" },
+        { "path": "../../utils/get-npm-info" }
     ]
 }
