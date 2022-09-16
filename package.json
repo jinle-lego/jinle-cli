@@ -8,7 +8,7 @@
     "build": "lerna run --stream --sort build",
     "watch": "lerna run watch --parallel",
     "lint": "eslint --fix --ext .js,.ts",
-    "publish": "yarn build && lerna version && lerna publish from-git",
+    "publish": "lerna version && yarn build && lerna publish from-git",
     "commit": "cz",
     "prepare": "husky install"
   },
