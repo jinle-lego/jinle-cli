@@ -1,6 +1,5 @@
 import semver from 'semver';
 import log, { updateLogLevel } from '@jinle-cli/log';
-import { getLatestVersion } from '@jinle-cli/get-npm-info';
 import colors from 'colors/safe';
 import rootCheck from 'root-check';
 import { homedir } from 'os';
@@ -8,6 +7,8 @@ import pathExists from 'path-exists';
 import minimist from 'minimist';
 import * as dotenv from 'dotenv';
 import path from 'path';
+import { getLatestVersion } from '@jinle-cli/get-npm-info';
+import dedent from 'dedent';
 
 import pkg from '../package.json';
 import { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } from './constant';
@@ -91,8 +92,13 @@ const checkGlobalUpdate = async () => {
     if (latestVersion && semver.gt(latestVersion, curVersion)) {
         log.warn(
             '更新提示',
-            colors.yellow(`请手动更新${npmName}，当前版本: ${curVersion}，最新版本: ${latestVersion}\n更新命令: npm install -g ${npmName}@latest`),
+            colors.yellow(
+                dedent`请手动更新${npmName}，当前版本: ${curVersion}，最新版本: ${latestVersion}
+                更新命令: npm install -g ${npmName}@latest`,
+            ),
         );
+    } else {
+        log.info('', colors.yellow(`当前处于最新版本: v${latestVersion}`));
     }
 };
 
