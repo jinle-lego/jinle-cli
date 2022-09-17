@@ -98,7 +98,7 @@ const checkGlobalUpdate = async () => {
             ),
         );
     } else {
-        log.info('', colors.yellow(`当前处于最新版本: v${latestVersion}`));
+        log.info('', colors.yellow(`当前处于最新版本: ${latestVersion}`));
     }
 };
 

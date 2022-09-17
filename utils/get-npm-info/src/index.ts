@@ -4,6 +4,7 @@ import urlJoin from 'url-join';
 
 const DEFAULT_REGISTRY: string = 'https://registry.npmjs.org';
 
+// 获取npm仓库信息
 export const getNpmInfo = async (npmName: string, registry: string = DEFAULT_REGISTRY): Promise<any> => {
     if (!npmName) {
         return;
@@ -17,6 +18,7 @@ export const getNpmInfo = async (npmName: string, registry: string = DEFAULT_REG
     }).catch((err) => Promise.reject(err));
 };
 
+// 获取所有版本号
 export const getNpmVersions = async (npmName: string, registry: string = DEFAULT_REGISTRY): Promise<string[]> => {
     const npmInfo = await getNpmInfo(npmName, registry);
     if (npmInfo) {
@@ -25,11 +27,12 @@ export const getNpmVersions = async (npmName: string, registry: string = DEFAULT
     return [];
 };
 
-// 获取更新版本号
+// 获取更新于当前的版本号
 const getGTVersions = (baseVersion: string, versions: string[]): string[] => versions
     .filter((v) => semver.satisfies(v, `^${baseVersion}`))
     .sort((a, b) => (semver.gt(b, a) ? 1 : -1));
 
+// 获取最新版本号
 export const getLatestVersion = async (
     baseVersion: string,
     npmName: string,
