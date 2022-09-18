@@ -10,6 +10,7 @@ import path from 'path';
 import { getLatestVersion } from '@jinle-cli/get-npm-info';
 import dedent from 'dedent';
 import { Command } from 'commander';
+import init from '@jinle-cli/init';
 
 import pkg from '../package.json';
 import { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } from './constant';
@@ -109,6 +110,12 @@ const registerCommander = () => {
         .version(pkg.version)
         .option('-d --debug', '是否开启debug模式', false);
 
+    program
+        .command('init [projectName]')
+        .description('初始化项目')
+        .option('-f --force', '强制初始化项目')
+        .action(init);
+
     // 判断debug模式
     program.on('option:debug', () => {
         if (program?.args?.length) {
@@ -140,7 +147,7 @@ export default async (argv: string[]) => {
         checkUserHome();
         // checkInputArgs(argv);
         checkEnv();
-        await checkGlobalUpdate();
+        // await checkGlobalUpdate();
         registerCommander();
     } catch (err) {
         log.error('cli', err?.message || err);
