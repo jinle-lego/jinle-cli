@@ -1,6 +1,7 @@
 import log from 'npmlog';
 
-export const updateLogLevel = () => {
+export const updateLogLevel = (level: string = 'info') => {
+    process.env.LOG_LEVEL = level;
     log.level = process.env?.LOG_LEVEL || 'info'; // 判断debug模式
 };
 

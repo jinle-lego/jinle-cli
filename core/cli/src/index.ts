@@ -3,12 +3,13 @@ import log, { updateLogLevel } from '@jinle-cli/log';
 import colors from 'colors/safe';
 import rootCheck from 'root-check';
 import { homedir } from 'os';
-import pathExists from 'path-exists';
+import { sync as pathExistsSync } from 'path-exists';
 import minimist from 'minimist';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { getLatestVersion } from '@jinle-cli/get-npm-info';
 import dedent from 'dedent';
+import { Command } from 'commander';
 
 import pkg from '../package.json';
 import { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } from './constant';
@@ -38,7 +39,7 @@ const checkRoot = () => {
  * 检查用户主目录
  */
 const checkUserHome = () => {
-    if (!homedir() || !pathExists(homedir())) {
+    if (!homedir() || !pathExistsSync(homedir())) {
         throw new Error(colors.red('当前用户主目录不存在'));
     }
 };
@@ -46,10 +47,9 @@ const checkUserHome = () => {
 /**
  * 检查入参
  */
-const checkInputArgs = (args: minimist.ParsedArgs) => {
-    // 判断 debug 模式
-    process.env.LOG_LEVEL = args.debug ? 'verbose' : 'info';
-    updateLogLevel();
+const checkInputArgs = (argv: string[]) => {
+    // 判断debug模式
+    updateLogLevel(minimist(argv).debug ? 'verbose' : 'info');
     log.verbose('debug', colors.yellow('进入 debug 模式'));
 };
 
@@ -68,12 +68,10 @@ const createDefaultConfig = () => {
  */
 const checkEnv = () => {
     const dotenvPath = path.resolve(homedir(), '.env');
-    if (pathExists(dotenvPath)) {
-        // 找到根目录下的.env文件，将数据都写入环境变量
-        dotenv.config({
-            path: dotenvPath,
-        });
-    }
+    // 找到根目录下的.env文件，将数据都写入环境变量
+    pathExistsSync(dotenvPath) && dotenv.config({
+        path: dotenvPath,
+    });
     createDefaultConfig();
     log.verbose('env', process.env.CLI_HOME_PATH);
 };
@@ -102,17 +100,48 @@ const checkGlobalUpdate = async () => {
     }
 };
 
+const registerCommander = () => {
+    const program: Command = new Command();
+
+    program
+        .name(Object.keys(pkg.bin)[0])
+        .usage('<command> [options]')
+        .version(pkg.version)
+        .option('-d --debug', '是否开启debug模式', false);
+
+    // 判断debug模式
+    program.on('option:debug', () => {
+        if (program?.args?.length) {
+            updateLogLevel(program.opts().debug ? 'verbose' : 'info');
+            log.verbose('debug', colors.yellow('进入 debug 模式'));
+        }
+    });
+
+    // 未知命令监听
+    program.on('command:*', (args: string[]) => {
+        const availableCommands: string[] = program.commands.map((cmd) => cmd.name());
+        log.error('', colors.red(`未知命令: ${args[0]}`));
+        availableCommands.length && log.info('', `可用命令: ${availableCommands.join(', ')}`);
+    });
+
+    program.parse(process.argv);
+
+    if (program.args && !program.args.length) {
+        // 没有输入command 展示help信息
+        program.outputHelp();
+    }
+};
+
 export default async (argv: string[]) => {
     try {
-        const args = minimist(argv);
-
         checkPkgVersion();
         checkNodeVersion();
         checkRoot();
         checkUserHome();
-        checkInputArgs(args);
+        // checkInputArgs(argv);
         checkEnv();
         await checkGlobalUpdate();
+        registerCommander();
     } catch (err) {
         log.error('cli', err?.message || err);
     }
