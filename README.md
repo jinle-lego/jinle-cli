@@ -18,3 +18,11 @@ yarn commit
 // 发布包
 yarn run publish
 ```
+
+# 环境变量
+```js
+CLI_HOME // cli默认文件夹
+CLI_HOME_PATH // cli默认文件夹路径
+CLI_TARGET_PATH // 本地文件调试路径
+LOG_LEVEL // log等级
+```

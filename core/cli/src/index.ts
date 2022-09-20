@@ -4,13 +4,13 @@ import colors from 'colors/safe';
 import rootCheck from 'root-check';
 import { homedir } from 'os';
 import { sync as pathExistsSync } from 'path-exists';
-import minimist from 'minimist';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { getLatestVersion } from '@jinle-cli/get-npm-info';
 import dedent from 'dedent';
 import { Command } from 'commander';
 import init from '@jinle-cli/init';
+import exec from '@jinle-cli/exec';
 
 import pkg from '../package.json';
 import { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } from './constant';
@@ -46,15 +46,6 @@ const checkUserHome = () => {
 };
 
 /**
- * 检查入参
- */
-const checkInputArgs = (argv: string[]) => {
-    // 判断debug模式
-    updateLogLevel(minimist(argv).debug ? 'verbose' : 'info');
-    log.verbose('debug', colors.yellow('进入 debug 模式'));
-};
-
-/**
  * 设置默认环境变量
  */
 const createDefaultConfig = () => {
@@ -74,7 +65,7 @@ const checkEnv = () => {
         path: dotenvPath,
     });
     createDefaultConfig();
-    log.verbose('env', process.env.CLI_HOME_PATH);
+    // log.verbose('CLI_HOME_PATH', process.env.CLI_HOME_PATH);
 };
 
 /**
@@ -101,6 +92,15 @@ const checkGlobalUpdate = async () => {
     }
 };
 
+const prepare = async () => {
+    checkPkgVersion();
+    checkNodeVersion();
+    checkRoot();
+    checkUserHome();
+    checkEnv();
+    // await checkGlobalUpdate();
+};
+
 const registerCommander = () => {
     const program: Command = new Command();
 
@@ -108,20 +108,23 @@ const registerCommander = () => {
         .name(Object.keys(pkg.bin)[0])
         .usage('<command> [options]')
         .version(pkg.version)
-        .option('-d --debug', '是否开启debug模式', false);
+        .option('-d --debug', '是否开启debug模式', false)
+        .option('-tp --targetPath <targetPath>', '是否指定本地调试文件路径', '');
 
     program
         .command('init [projectName]')
         .description('初始化项目')
         .option('-f --force', '强制初始化项目')
-        .action(init);
+        .action(exec);
 
     // 判断debug模式
     program.on('option:debug', () => {
-        if (program?.args?.length) {
-            updateLogLevel(program.opts().debug ? 'verbose' : 'info');
-            log.verbose('debug', colors.yellow('进入 debug 模式'));
-        }
+        updateLogLevel(program.opts().debug ? 'verbose' : 'info');
+        log.verbose('debug', colors.yellow('进入 debug 模式'));
+    });
+
+    program.on('option:targetPath', (targetPath) => {
+        process.env.CLI_TARGET_PATH = targetPath;
     });
 
     // 未知命令监听
@@ -141,13 +144,7 @@ const registerCommander = () => {
 
 export default async (argv: string[]) => {
     try {
-        checkPkgVersion();
-        checkNodeVersion();
-        checkRoot();
-        checkUserHome();
-        // checkInputArgs(argv);
-        checkEnv();
-        // await checkGlobalUpdate();
+        await prepare();
         registerCommander();
     } catch (err) {
         log.error('cli', err?.message || err);

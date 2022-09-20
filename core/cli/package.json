@@ -28,6 +28,7 @@
   },
   "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
   "dependencies": {
+    "@jinle-cli/exec": "0.0.1",
     "@jinle-cli/get-npm-info": "0.1.5",
     "@jinle-cli/init": "0.1.6",
     "@jinle-cli/log": "0.1.5",
@@ -39,7 +40,6 @@
     "dedent": "^0.7.0",
     "dotenv": "^16.0.2",
     "import-local": "^3.1.0",
-    "minimist": "^1.2.6",
     "npmlog": "^6.0.2",
     "path-exists": "^4.0.0",
     "root-check": "^1.0.0",
