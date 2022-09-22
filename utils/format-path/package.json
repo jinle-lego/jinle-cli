@@ -1,7 +1,7 @@
 {
-  "name": "@jinle-cli/package",
+  "name": "@jinle-cli/format-path",
   "version": "0.0.1",
-  "description": "jinle-cli package model",
+  "description": "jinle-cli format path",
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
   "license": "ISC",
@@ -24,10 +24,5 @@
   },
   "bugs": {
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
-  },
-  "dependencies": {
-    "@jinle-cli/utils": "0.0.1",
-    "@jinle-cli/format-path": "0.0.1",
-    "pkg-dir": "4.2.0"
   }
 }

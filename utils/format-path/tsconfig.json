@@ -5,9 +5,5 @@
     },
     "include": [
         "./src"
-    ],
-    "references": [
-        { "path": "../../utils/utils" },
-        { "path": "../../utils/format-path" }
     ]
 }

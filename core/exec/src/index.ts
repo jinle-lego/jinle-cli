@@ -18,13 +18,16 @@ const exec = (...args: any[]) => {
     const packageName: string = COMMAND_PACKAGE_NAME[cmdName];
     const packageVersion: string = 'latest';
 
+    if (!targetPath) {
+        // 生成缓存路径
+    }
+
     const pkg = new Package({
         targetPath,
-        storeDir: homePath,
         packageName,
         packageVersion,
     });
-    console.log(pkg);
+    console.log('exec', pkg.getRootFilePath());
 };
 
 export default exec;
