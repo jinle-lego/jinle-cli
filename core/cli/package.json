@@ -32,6 +32,7 @@
     "@jinle-cli/get-npm-info": "0.1.5",
     "@jinle-cli/init": "0.1.6",
     "@jinle-cli/log": "0.1.5",
+    "@jinle-cli/utils": "0.0.1",
     "@types/dedent": "^0.7.0",
     "@types/root-check": "^1.0.0",
     "@types/semver": "^7.3.12",

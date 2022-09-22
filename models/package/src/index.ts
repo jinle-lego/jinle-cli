@@ -1,6 +1,5 @@
-import { isObject } from '@jinle-cli/utils';
+import { isObject, readJsonFile } from '@jinle-cli/utils';
 import { sync as pkgDirSync } from 'pkg-dir';
-import fs from 'fs';
 import path from 'path';
 import formatPath from '@jinle-cli/format-path';
 
@@ -47,7 +46,7 @@ class Package {
     public getRootFilePath(): string {
         const pkgDir: string = pkgDirSync(this.targetPath);
         if (pkgDir) {
-            const pkgFile = JSON.parse(fs.readFileSync(path.resolve(pkgDir, 'package.json'), 'utf-8'));
+            const pkgFile = readJsonFile(path.resolve(pkgDir, 'package.json'));
             if (pkgFile && pkgFile.main) {
                 return formatPath(path.resolve(pkgDir, pkgFile.main));
             }

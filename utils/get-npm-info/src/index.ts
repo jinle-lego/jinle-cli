@@ -37,7 +37,7 @@ export const getLatestVersion = async (
     baseVersion: string,
     npmName: string,
     registry: string = DEFAULT_REGISTRY,
-): Promise<string | null> => {
+): Promise<string> => {
     const versions: string[] = await getNpmVersions(npmName, registry);
     const gtVersions: string[] = getGTVersions(baseVersion, versions);
     if (gtVersions && gtVersions.length) {

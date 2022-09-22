@@ -24,5 +24,8 @@
   },
   "bugs": {
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
+  },
+  "dependencies": {
+    "pkg-dir": "4.2.0"
   }
 }
