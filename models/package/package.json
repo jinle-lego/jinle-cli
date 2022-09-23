@@ -26,8 +26,10 @@
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
   "dependencies": {
-    "@jinle-cli/utils": "0.0.1",
     "@jinle-cli/format-path": "0.0.1",
+    "@jinle-cli/utils": "0.0.1",
+    "@jinle-cli/get-npm-info": "0.1.5",
+    "npminstall": "^6.5.1",
     "pkg-dir": "4.2.0"
   }
 }

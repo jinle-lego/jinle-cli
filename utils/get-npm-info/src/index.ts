@@ -2,7 +2,7 @@ import semver from 'semver';
 import axios from 'axios';
 import urlJoin from 'url-join';
 
-const DEFAULT_REGISTRY: string = 'https://registry.npmjs.org';
+export const DEFAULT_REGISTRY: string = 'https://registry.npmjs.org';
 
 // 获取npm仓库信息
 export const getNpmInfo = async (npmName: string, registry: string = DEFAULT_REGISTRY): Promise<any> => {

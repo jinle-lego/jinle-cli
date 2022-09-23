@@ -2,11 +2,15 @@ import { isObject, readJsonFile } from '@jinle-cli/utils';
 import { sync as pkgDirSync } from 'pkg-dir';
 import path from 'path';
 import formatPath from '@jinle-cli/format-path';
+import npminstall from 'npminstall';
+import { DEFAULT_REGISTRY } from '@jinle-cli/get-npm-info';
 
 import { PackageOptions } from './types';
 
 class Package {
     private targetPath: string; // package路径
+
+    private storeDir: string; // package缓存路径
 
     private packageName: string;
 
@@ -17,6 +21,7 @@ class Package {
             throw new Error('Package类传参有误！');
         }
         this.targetPath = options.targetPath;
+        this.storeDir = options.storeDir;
         this.packageName = options.packageName;
         this.packageVersion = options.packageVersion;
     }
@@ -24,12 +29,25 @@ class Package {
     /**
      * 判断当前package是否存在
      */
-    public static exists() {}
+    public exists() {
+        console.log(this.targetPath);
+        return false;
+    }
 
     /**
      * 安装
      */
-    public static install() {}
+    public async install() {
+        await npminstall({
+            root: this.targetPath,
+            storeDir: this.storeDir,
+            registry: DEFAULT_REGISTRY,
+            pkgs: [{
+                name: this.packageName,
+                version: this.packageVersion,
+            }],
+        });
+    }
 
     /**
      * 更新
