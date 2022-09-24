@@ -6,7 +6,7 @@ import { homedir } from 'os';
 import { sync as pathExistsSync } from 'path-exists';
 import * as dotenv from 'dotenv';
 import path from 'path';
-import { getLatestVersion } from '@jinle-cli/get-npm-info';
+import { getSemverVersion } from '@jinle-cli/get-npm-info';
 import dedent from 'dedent';
 import { readPackageJson } from '@jinle-cli/utils';
 
@@ -77,7 +77,7 @@ const checkEnv = () => {
 const checkGlobalUpdate = async () => {
     const curVersion: string = pkg.version;
     const npmName: string = pkg.name;
-    const latestVersion: string = await getLatestVersion(curVersion, npmName);
+    const latestVersion: string = await getSemverVersion(curVersion, npmName);
     if (latestVersion && semver.gt(latestVersion, curVersion)) {
         log.warn(
             '更新提示',

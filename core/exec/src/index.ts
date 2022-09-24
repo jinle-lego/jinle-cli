@@ -27,8 +27,9 @@ const exec = async (...args: any[]) => {
             packageName,
             packageVersion,
         });
-        if (pkg.exists()) {
+        if (await pkg.exists()) {
             // 更新
+            await pkg.update();
         } else {
             // 安装
             await pkg.install();

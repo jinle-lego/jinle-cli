@@ -32,8 +32,8 @@ const getGTVersions = (baseVersion: string, versions: string[]): string[] => ver
     .filter((v) => semver.satisfies(v, `^${baseVersion}`))
     .sort((a, b) => (semver.gt(b, a) ? 1 : -1));
 
-// 获取最新版本号
-export const getLatestVersion = async (
+// 获取相对当前版本的最新版本号
+export const getSemverVersion = async (
     baseVersion: string,
     npmName: string,
     registry: string = DEFAULT_REGISTRY,
@@ -42,6 +42,15 @@ export const getLatestVersion = async (
     const gtVersions: string[] = getGTVersions(baseVersion, versions);
     if (gtVersions && gtVersions.length) {
         return gtVersions[0];
+    }
+    return null;
+};
+
+// 获取最新版本号
+export const getLatestVersion = async (npmName: string, registry: string = DEFAULT_REGISTRY): Promise<string> => {
+    const versions: string[] = await getNpmVersions(npmName, registry);
+    if (versions) {
+        return versions.sort((a, b) => (semver.gt(b, a) ? 1 : -1))[0];
     }
     return null;
 };

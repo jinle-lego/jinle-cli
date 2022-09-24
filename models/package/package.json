@@ -27,9 +27,12 @@
   },
   "dependencies": {
     "@jinle-cli/format-path": "0.0.1",
-    "@jinle-cli/utils": "0.0.1",
     "@jinle-cli/get-npm-info": "0.1.5",
+    "@jinle-cli/utils": "0.0.1",
+    "@types/fs-extra": "^9.0.13",
+    "fs-extra": "^10.1.0",
     "npminstall": "^6.5.1",
+    "path-exists": "^4.0.0",
     "pkg-dir": "4.2.0"
   }
 }
