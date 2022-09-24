@@ -114,14 +114,17 @@ class Package {
      * 4. 不同系统路径兼容
      */
     public getRootFilePath(): string {
-        const pkgDir: string = pkgDirSync(this.targetPath);
-        if (pkgDir) {
-            const pkgFile = readJsonFile(path.resolve(pkgDir, 'package.json'));
-            if (pkgFile && pkgFile.main) {
-                return formatPath(path.resolve(pkgDir, pkgFile.main));
+        const getPathFn = (target: string): string => {
+            const pkgDir: string = pkgDirSync(target);
+            if (pkgDir) {
+                const pkgFile = readJsonFile(path.resolve(pkgDir, 'package.json'));
+                if (pkgFile && pkgFile.main) {
+                    return formatPath(path.resolve(pkgDir, pkgFile.main));
+                }
             }
-        }
-        return null;
+            return null;
+        };
+        return getPathFn(this.storeDir ? this.cacheFilePath : this.targetPath);
     }
 }
 
