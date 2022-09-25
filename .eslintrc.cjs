@@ -26,5 +26,6 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": 1,
         "no-unused-expressions": ['error', { "allowShortCircuit": true }], // 禁止未使用过的表达式
         "@typescript-eslint/no-unused-expressions": ['error', { "allowShortCircuit": true }], // 禁止未使用过的表达式
+        "no-underscore-dangle": 0, // 下划线
     },
 };

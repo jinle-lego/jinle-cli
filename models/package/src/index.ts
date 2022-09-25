@@ -10,74 +10,74 @@ import fse from 'fs-extra';
 import { PackageOptions } from './types';
 
 class Package {
-    private targetPath: string; // package路径
+    private _targetPath: string; // package路径
 
-    private storeDir: string; // package缓存路径
+    private _storeDir: string; // package缓存路径
 
-    private packageName: string;
+    private _packageName: string;
 
-    private packageVersion: string;
+    private _packageVersion: string;
 
     // 缓存node_modules中包名路径前缀
     // 包名如 _@jinle-cli_init@0.1.6@@jinle-cli/init
     // cacheFilePathPrefix = @jinle-cli_init
-    private cacheFilePathPrefix: string;
+    private _cacheFilePathPrefix: string;
 
     constructor(options: PackageOptions) {
         if (!options || !isObject(options)) {
             throw new Error('Package类传参有误！');
         }
-        this.targetPath = options.targetPath;
-        this.storeDir = options.storeDir;
-        this.packageName = options.packageName;
-        this.packageVersion = options.packageVersion;
-        this.cacheFilePathPrefix = this.packageName.replace('/', '_');
+        this._targetPath = options.targetPath;
+        this._storeDir = options.storeDir;
+        this._packageName = options.packageName;
+        this._packageVersion = options.packageVersion;
+        this._cacheFilePathPrefix = this._packageName.replace('/', '_');
     }
 
     // 缓存node_modules中包路径
-    private get cacheFilePath(): string {
-        return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`);
+    private get _cacheFilePath(): string {
+        return path.resolve(this._storeDir, `_${this._cacheFilePathPrefix}@${this._packageVersion}@${this._packageName}`);
     }
 
-    private async prepare() {
-        if (this.storeDir && !pathExistsSync(this.storeDir)) {
+    private async _prepare() {
+        if (this._storeDir && !pathExistsSync(this._storeDir)) {
             // 缓存路径不存在 创建缓存路径（包括所有不存在父路径）
-            fse.mkdirpSync(this.storeDir);
+            fse.mkdirpSync(this._storeDir);
         }
-        if (this.packageVersion === 'latest') {
-            this.packageVersion = await getLatestVersion(this.packageName);
+        if (this._packageVersion === 'latest') {
+            this._packageVersion = await getLatestVersion(this._packageName);
         }
     }
 
     // 获取缓存node_modules中特定版本的包路径
-    private getSpecificCacheFilePath(version: string): string {
-        return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${version}@${this.packageName}`);
+    private _getSpecificCacheFilePath(version: string): string {
+        return path.resolve(this._storeDir, `_${this._cacheFilePathPrefix}@${version}@${this._packageName}`);
     }
 
     /**
      * 判断当前package是否存在
      */
     public async exists(): Promise<boolean> {
-        if (this.storeDir) {
+        if (this._storeDir) {
             // 缓存模式
-            await this.prepare();
-            return pathExistsSync(this.cacheFilePath);
+            await this._prepare();
+            return pathExistsSync(this._cacheFilePath);
         }
-        return pathExistsSync(this.targetPath);
+        return pathExistsSync(this._targetPath);
     }
 
     /**
      * 安装
      */
     public async install() {
-        await this.prepare();
+        await this._prepare();
         return npminstall({
-            root: this.targetPath,
-            storeDir: this.storeDir,
+            root: this._targetPath,
+            storeDir: this._storeDir,
             registry: DEFAULT_REGISTRY,
             pkgs: [{
-                name: this.packageName,
-                version: this.packageVersion,
+                name: this._packageName,
+                version: this._packageVersion,
             }],
         });
     }
@@ -89,21 +89,21 @@ class Package {
      * 3. 如果不存在，则直接安装最新版本
      */
     public async update() {
-        await this.prepare();
-        const latestVersion: string = await getLatestVersion(this.packageName);
-        const latestCacheFilePath: string = this.getSpecificCacheFilePath(latestVersion);
+        await this._prepare();
+        const latestVersion: string = await getLatestVersion(this._packageName);
+        const latestCacheFilePath: string = this._getSpecificCacheFilePath(latestVersion);
         if (!pathExistsSync(latestCacheFilePath)) {
             await npminstall({
-                root: this.targetPath,
-                storeDir: this.storeDir,
+                root: this._targetPath,
+                storeDir: this._storeDir,
                 registry: DEFAULT_REGISTRY,
                 pkgs: [{
-                    name: this.packageName,
+                    name: this._packageName,
                     version: latestVersion,
                 }],
             });
         }
-        this.packageVersion = latestVersion;
+        this._packageVersion = latestVersion;
     }
 
     /**
@@ -124,7 +124,7 @@ class Package {
             }
             return null;
         };
-        return getPathFn(this.storeDir ? this.cacheFilePath : this.targetPath);
+        return getPathFn(this._storeDir ? this._cacheFilePath : this._targetPath);
     }
 }
 

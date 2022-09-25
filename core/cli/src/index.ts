@@ -1,7 +1,6 @@
 import log, { updateLogLevel } from '@jinle-cli/log';
 import colors from 'colors/safe';
 import { Command } from 'commander';
-import init from '@jinle-cli/init';
 import exec from '@jinle-cli/exec';
 import { readPackageJson } from '@jinle-cli/utils';
 
