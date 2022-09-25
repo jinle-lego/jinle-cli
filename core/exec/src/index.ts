@@ -1,6 +1,7 @@
 import Package from '@jinle-cli/package';
 import log from '@jinle-cli/log';
 import path from 'path';
+import cp from 'child_process';
 
 import { COMMAND_PACKAGE_NAME, CATCH_DIR } from './constant';
 
@@ -46,7 +47,32 @@ const exec = async (...args: any[]) => {
 
     try {
         const rootFile: string = pkg.getRootFilePath();
-        rootFile && (await import(rootFile)).default(args);
+        if (rootFile) {
+            // 当前进程调用
+            // (await import(rootFile)).default(args);
+            // 子进程调用
+            const newCmd = Object.create(null);
+            Object.keys(cmd).forEach((key) => {
+                // 处理cmdObj，过滤多余属性
+                Object.prototype.hasOwnProperty.call(cmd, key)
+                && !key.startsWith('_')
+                && key !== 'parent'
+                && (newCmd[key] = cmd[key]);
+            });
+            const code: string = `require("${rootFile}").default.call(null, ${JSON.stringify([...args.slice(0, -1), newCmd])});`;
+            const child: cp.ChildProcess = cp.spawn('node', ['-e', code], {
+                cwd: process.cwd(),
+                stdio: 'inherit',
+            });
+            child.on('error', (e) => {
+                log.error('exec', e.message);
+                process.exit(1);
+            });
+            child.on('exit', (e) => {
+                log.verbose('exec', `命令执行成功:${e}`);
+                process.exit(e);
+            });
+        }
     } catch (err) {
         log.error('exec', err?.message || err);
     }
