@@ -10,21 +10,12 @@ import { getSemverVersion } from '@jinle-cli/get-npm-info';
 import dedent from 'dedent';
 import { readPackageJson } from '@jinle-cli/utils';
 
-import { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME } from './constant';
+import { DEFAULT_CLI_HOME } from './constant';
 
 const pkg = readPackageJson(__dirname);
 
 const checkPkgVersion = () => {
     log.info('jinle-cli', `v${pkg.version}`);
-};
-
-const checkNodeVersion = () => {
-    const curVersion = process.version; // 当前node版本
-    const lowestVersion = LOWEST_NODE_VERSION;
-    if (!semver.gte(curVersion, lowestVersion)) {
-        // 当前版本低于最低版本
-        throw new Error(colors.red(`jinle-cli 需安装 v${lowestVersion} 以上的 Node.js 版本`));
-    }
 };
 
 /**
@@ -93,7 +84,6 @@ const checkGlobalUpdate = async () => {
 
 const prepare = async () => {
     checkPkgVersion();
-    checkNodeVersion();
     checkRoot();
     checkUserHome();
     checkEnv();

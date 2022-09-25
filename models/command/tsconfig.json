@@ -7,7 +7,6 @@
         "./src"
     ],
     "references": [
-        {"path": "../../models/command"},
         {"path": "../../utils/log"}
     ]
 }

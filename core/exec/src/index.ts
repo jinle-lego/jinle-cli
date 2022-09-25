@@ -9,7 +9,7 @@ const exec = async (...args: any[]) => {
     let targetPath: string = process.env.CLI_TARGET_PATH;
     let storeDir: string;
     const cmd: any = args[args.length - 1];
-    const cmdOptions: any = args[args.length - 2];
+    // const cmdOptions: any = args[args.length - 2];
     const cmdName: string = cmd.name(); // 命令名称
     const packageName: string = COMMAND_PACKAGE_NAME[cmdName];
     const packageVersion: string = 'latest';
@@ -20,7 +20,7 @@ const exec = async (...args: any[]) => {
         // 不执行指定包代码，使用缓存包
         targetPath = path.resolve(homePath, CATCH_DIR); // 生成缓存路径
         storeDir = path.resolve(targetPath, 'node_modules');
-        log.verbose('exec', `使用此包执行该命令:${packageName}@${packageVersion}`);
+        log.info('exec', `使用此包执行该命令:${packageName}@${packageVersion}`);
         pkg = new Package({
             targetPath,
             storeDir,
@@ -36,7 +36,7 @@ const exec = async (...args: any[]) => {
         }
     } else {
         // 执行指定包代码
-        log.verbose('exec', `使用此包执行该命令:${targetPath}`);
+        log.info('exec', `使用此包执行该命令:${targetPath}`);
         pkg = new Package({
             targetPath,
             packageName,
@@ -44,8 +44,12 @@ const exec = async (...args: any[]) => {
         });
     }
 
-    const rootFile: string = pkg.getRootFilePath();
-    rootFile && (await import(rootFile)).default(...args);
+    try {
+        const rootFile: string = pkg.getRootFilePath();
+        rootFile && (await import(rootFile)).default(args);
+    } catch (err) {
+        log.error('exec', err?.message || err);
+    }
 };
 
 export default exec;

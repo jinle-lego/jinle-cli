@@ -8,6 +8,7 @@
     ],
     "references": [
         { "path": "../../utils/utils" },
-        { "path": "../../utils/format-path" }
+        { "path": "../../utils/format-path" },
+        { "path": "../../utils/get-npm-info" }
     ]
 }

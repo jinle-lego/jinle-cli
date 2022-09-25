@@ -10,7 +10,6 @@
     "references": [
         { "path": "../../utils/log" },
         { "path": "../../utils/get-npm-info" },
-        { "path": "../../commands/init" },
         { "path": "../exec" },
         { "path": "../../utils/utils" }
     ]
