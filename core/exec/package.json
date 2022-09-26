@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@jinle-cli/package": "0.0.1",
+    "@jinle-cli/utils": "0.0.1",
     "@jinle-cli/log": "0.1.5"
   }
 }

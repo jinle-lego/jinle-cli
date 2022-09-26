@@ -2,6 +2,7 @@ import Package from '@jinle-cli/package';
 import log from '@jinle-cli/log';
 import path from 'path';
 import cp from 'child_process';
+import { spawn } from '@jinle-cli/utils';
 
 import { COMMAND_PACKAGE_NAME, CATCH_DIR } from './constant';
 
@@ -60,7 +61,7 @@ const exec = async (...args: any[]) => {
                 && (newCmd[key] = cmd[key]);
             });
             const code: string = `require("${rootFile}").default.call(null, ${JSON.stringify([...args.slice(0, -1), newCmd])});`;
-            const child: cp.ChildProcess = cp.spawn('node', ['-e', code], {
+            const child: cp.ChildProcess = spawn('node', ['-e', code], {
                 cwd: process.cwd(),
                 stdio: 'inherit',
             });

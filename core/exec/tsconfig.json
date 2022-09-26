@@ -8,6 +8,7 @@
     ],
     "references": [
         { "path": "../../models/package" },
-        { "path": "../../utils/log" }
+        { "path": "../../utils/log" },
+        { "path": "../../utils/utils" }
     ]
 }
