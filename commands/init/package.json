@@ -28,5 +28,6 @@
   "dependencies": {
     "@jinle-cli/command": "0.1.7",
     "@jinle-cli/log": "0.1.7"
-  }
+  },
+  "gitHead": "61736a8af3ab59d2f7c96af4a794aee951156011"
 }

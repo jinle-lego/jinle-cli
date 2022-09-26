@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
-  "gitHead": "93e05f69e7a8a0c0010faf7601197ec46313aba5",
+  "gitHead": "61736a8af3ab59d2f7c96af4a794aee951156011",
   "dependencies": {
     "@jinle-cli/exec": "0.1.7",
     "@jinle-cli/get-npm-info": "0.1.7",

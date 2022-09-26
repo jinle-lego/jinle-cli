@@ -27,5 +27,6 @@
   },
   "dependencies": {
     "pkg-dir": "4.2.0"
-  }
+  },
+  "gitHead": "61736a8af3ab59d2f7c96af4a794aee951156011"
 }

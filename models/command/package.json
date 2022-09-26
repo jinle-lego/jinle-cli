@@ -30,5 +30,6 @@
     "@types/semver": "^7.3.12",
     "colors": "^1.4.0",
     "semver": "^7.3.7"
-  }
+  },
+  "gitHead": "61736a8af3ab59d2f7c96af4a794aee951156011"
 }
