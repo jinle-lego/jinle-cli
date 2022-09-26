@@ -1,6 +1,6 @@
 {
   "name": "@jinle-cli/package",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "jinle-cli package model",
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
@@ -26,9 +26,9 @@
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
   "dependencies": {
-    "@jinle-cli/format-path": "0.1.7",
-    "@jinle-cli/get-npm-info": "0.1.7",
-    "@jinle-cli/utils": "0.1.7",
+    "@jinle-cli/format-path": "0.1.8",
+    "@jinle-cli/get-npm-info": "0.1.8",
+    "@jinle-cli/utils": "0.1.8",
     "@types/fs-extra": "^9.0.13",
     "fs-extra": "^10.1.0",
     "npminstall": "^6.5.1",

@@ -1,6 +1,6 @@
 {
   "name": "@jinle-cli/cli",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "jinle cli",
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
@@ -28,10 +28,10 @@
   },
   "gitHead": "61736a8af3ab59d2f7c96af4a794aee951156011",
   "dependencies": {
-    "@jinle-cli/exec": "0.1.7",
-    "@jinle-cli/get-npm-info": "0.1.7",
-    "@jinle-cli/log": "0.1.7",
-    "@jinle-cli/utils": "0.1.7",
+    "@jinle-cli/exec": "0.1.8",
+    "@jinle-cli/get-npm-info": "0.1.8",
+    "@jinle-cli/log": "0.1.8",
+    "@jinle-cli/utils": "0.1.8",
     "@types/dedent": "^0.7.0",
     "@types/root-check": "^1.0.0",
     "@types/semver": "^7.3.12",

@@ -1,6 +1,6 @@
 {
   "name": "@jinle-cli/command",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "jinle-cli command model",
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
@@ -26,7 +26,7 @@
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
   "dependencies": {
-    "@jinle-cli/log": "0.1.7",
+    "@jinle-cli/log": "0.1.8",
     "@types/semver": "^7.3.12",
     "colors": "^1.4.0",
     "semver": "^7.3.7"

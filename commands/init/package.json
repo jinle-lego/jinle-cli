@@ -1,6 +1,6 @@
 {
   "name": "@jinle-cli/init",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "jinle-cli command init",
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
@@ -26,8 +26,8 @@
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
   "dependencies": {
-    "@jinle-cli/command": "0.1.7",
-    "@jinle-cli/log": "0.1.7"
+    "@jinle-cli/command": "0.1.8",
+    "@jinle-cli/log": "0.1.8"
   },
   "gitHead": "61736a8af3ab59d2f7c96af4a794aee951156011"
 }
