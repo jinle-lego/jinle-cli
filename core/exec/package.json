@@ -1,6 +1,6 @@
 {
   "name": "@jinle-cli/exec",
-  "version": "0.0.1",
+  "version": "0.1.7",
   "description": "jinle-cli exec",
   "author": "jinle <jinle.qiu@qq.com>",
   "homepage": "https://github.com/jinle-lego/jinle-cli#readme",
@@ -26,8 +26,8 @@
     "url": "https://github.com/jinle-lego/jinle-cli/issues"
   },
   "dependencies": {
-    "@jinle-cli/package": "0.0.1",
-    "@jinle-cli/utils": "0.0.1",
-    "@jinle-cli/log": "0.1.5"
+    "@jinle-cli/log": "0.1.7",
+    "@jinle-cli/package": "0.1.7",
+    "@jinle-cli/utils": "0.1.7"
   }
 }
