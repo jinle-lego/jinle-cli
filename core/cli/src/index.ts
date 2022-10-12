@@ -30,6 +30,7 @@ const registerCommander = () => {
         log.verbose('debug', colors.yellow('进入 debug 模式'));
     });
 
+    // 指定包执行命令
     program.on('option:targetPath', (targetPath) => {
         process.env.CLI_TARGET_PATH = targetPath;
     });
