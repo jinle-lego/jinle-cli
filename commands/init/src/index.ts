@@ -23,7 +23,7 @@ export class InitCommand extends Command {
 
     private _prepare() {
         // 1. 判断当前目录是否为空
-        if (!this._isCwdEmpty) {
+        if (!this._isCwdEmpty()) {
             // 询问是否继续创建
         }
         // 2. 是否强制清空
@@ -37,7 +37,7 @@ export class InitCommand extends Command {
         let fileList: string[] = fs.readdirSync(localPath);
         // 忽略文件
         fileList = fileList.filter((file) => (
-            !file.startsWith('.') || ['node_modules'].indexOf(file) < 0
+            !file.startsWith('.') && ['node_modules'].indexOf(file) < 0
         ));
         return !fileList || fileList.length <= 0;
     }
