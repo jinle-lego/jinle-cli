@@ -26,7 +26,8 @@ const registerCommander = () => {
 
     // 判断debug模式
     program.on('option:debug', () => {
-        updateLogLevel(program.opts().debug ? 'verbose' : 'info');
+        process.env.LOG_LEVEL = program.opts().debug ? 'verbose' : 'info';
+        updateLogLevel();
         log.verbose('debug', colors.yellow('进入 debug 模式'));
     });
 
