@@ -28,9 +28,11 @@
   "dependencies": {
     "@jinle-cli/command": "0.1.8",
     "@jinle-cli/log": "0.1.8",
-    "@types/inquirer": "^9.0.2",
+    "@types/inquirer": "8.2.4",
+    "@types/validate-npm-package-name": "^4.0.0",
     "fs-extra": "^10.1.0",
-    "inquirer": "8.2.4"
+    "inquirer": "8.2.4",
+    "validate-npm-package-name": "^5.0.0"
   },
   "gitHead": "61736a8af3ab59d2f7c96af4a794aee951156011"
 }
