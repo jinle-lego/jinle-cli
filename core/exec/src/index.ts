@@ -64,6 +64,7 @@ const exec = async (...args: any[]) => {
             const child: cp.ChildProcess = spawn('node', ['-e', code], {
                 cwd: process.cwd(),
                 stdio: 'inherit',
+                env: process.env,
             });
             child.on('error', (e) => {
                 log.error('exec', e.message);
