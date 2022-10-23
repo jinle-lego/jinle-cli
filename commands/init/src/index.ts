@@ -5,6 +5,9 @@ import inquirer from 'inquirer';
 import path from 'path';
 import fse from 'fs-extra';
 import validateNpmPackageName from 'validate-npm-package-name';
+import semver from 'semver';
+
+import { PROJECT_TYPE } from './constant';
 
 export class InitCommand extends Command {
     public projectName: string;
@@ -12,6 +15,10 @@ export class InitCommand extends Command {
     public projectPath: string; // 创建项目的目录
 
     public force: boolean;
+
+    public projectType: string;
+
+    public projectVersion: string;
 
     public async init() {
         this.projectName = this._argv[0] || '';
@@ -80,8 +87,7 @@ export class InitCommand extends Command {
                 ifClean && fse.emptyDirSync(this.projectPath);
             }
         }
-        // 3. 选择项目或组件
-        // 4. 获取项目/组件基本信息
+        await this._getProjectInfo();
     }
 
     // 判断当前目录是否为空
@@ -93,6 +99,48 @@ export class InitCommand extends Command {
         // 目录存在
         const fileList: string[] = fs.readdirSync(p);
         return !fileList || fileList.length <= 0;
+    }
+
+    private async _getProjectInfo() {
+        const { projectType, projectVersion }: {
+            projectType: string,
+            projectVersion: string,
+        } = await inquirer.prompt([
+            // 3. 选择项目或组件
+            {
+                type: 'list',
+                name: 'projectType',
+                default: PROJECT_TYPE.PROJECT.value,
+                message: '请选择初始化类型',
+                choices: Object.keys(PROJECT_TYPE).map((key) => PROJECT_TYPE[key]),
+            },
+            // 4. 获取项目/组件基本信息
+            {
+                type: 'input',
+                name: 'projectVersion',
+                default: '1.0.0',
+                message: '请输入版本号',
+                validate(v) {
+                    const done = this.async();
+                    if (!semver.valid(v)) {
+                        done('请输入合法版本号');
+                        return;
+                    }
+                    done(null, true);
+                    return null;
+                },
+                filter(v) {
+                    if (semver.valid(v)) {
+                        return semver.valid(v);
+                    }
+                    return v;
+                },
+            },
+        ]);
+        this.projectType = projectType;
+        this.projectVersion = projectVersion;
+        log.verbose('projectType', projectType);
+        log.verbose('projectVersion', projectVersion);
     }
 }
 
